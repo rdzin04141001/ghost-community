@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ghost Community</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    text-align: center;
+  }
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.imgur.com/mQjXU12.jpeg') center/cover no-repeat;
+    filter: blur(6px) brightness(40%);
+    z-index: -1;
+  }
+  .view-box {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 35px;
+    border-radius: 20px;
+    border: 2px solid red;
+    box-shadow: 0 0 30px red;
+    backdrop-filter: blur(5px);
+  }
+  .profile-img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 4px solid red;
+    box-shadow: 0 0 25px red;
+    margin-top: 15px;
+  }
+  h1 {
+    font-size: 45px;
+    margin-top: 15px;
+    color: #ff2b2b;
+    text-shadow: 0 0 15px red;
+  }
+  .section-title {
+    margin-top: 50px;
+    font-size: 40px;
+    color: #7db9ff;
+    text-shadow: 0 0 10px #4da3ff;
+  }
+  .card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 25px;
+  }
+  .card {
+    width: 330px;
+    background: #0a0a0a;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px red;
+    border: 2px solid red;
+    transition: 0.3s;
+  }
+  .card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px red;
+  }
+  .card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .mini-card { text-align:center; }
+  .mini-card p { margin-top:10px; font-size:20px; color:#ccc; }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="view-box">
+    <img class="profile-img" src="https://i.imgur.com/mQjXU12.jpeg" />
+    <h1>Ghost Community</h1>
+
+    <h2 class="section-title" style="color:red; text-shadow:0 0 10px red; margin-top:60px;">EXECUTORES</h2>
+    <div class="card-container">
+      <a href="https://deltaexploits.gg/delta-executor-android" class="card mini-card"><img src="https://i.imgur.com/ayUxVOR.png" /><p>Delta</p></a>
+      <a href="https://wearedevs.net/d/Krnl" class="card mini-card"><img src="https://i.imgur.com/y88zL0G.png" /><p>KRNL</p></a>
+      <a href="https://wearedevs.net/d/Ronix" class="card mini-card"><img src="https://i.imgur.com/nNdzDTU.png" /><p>Ronix</p></a>
+      <a href="https://wearedevs.net/d/Solara" class="card mini-card"><img src="https://i.imgur.com/NxiHjMb.png" /><p>Solara</p></a>
+      <a href="https://wearedevs.net/d/Fluxus%20Z" class="card mini-card"><img src="https://i.imgur.com/oQzRUxk.png" /><p>Fluxus Z</p></a>
+      <a href="https://wearedevs.net/d/JJSploit" class="card mini-card"><img src="https://i.imgur.com/aGR6fqU.png" /><p>JJSploit</p></a>
+      <a href="https://deltaexploits.gg/delta-executor-ios" class="card mini-card"><img src="https://i.imgur.com/ayUxVOR.png" /><p>Delta iOS</p></a>
+    </div>
+
+    <h2 class="section-title" style="color:red; text-shadow:0 0 10px red; margin-top:60px;">SCRIPTS</h2>
+    <div class="card-container">
+      <div class="card mini-card">
+        <img src="https://i.imgur.com/Ccq5JkP.png" />
+        <p>Gravity Hub</p>
+        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
+      </div>
+
+      <div class="card mini-card">
+        <img src="https://i.imgur.com/ZhyS2x1.png" />
+        <p>Quantum Onyx</p>
+        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</textarea>
+      </div>
+
+      <div class="card mini-card">
+        <img src="https://i.imgur.com/VViXuBP.png" />
+        <p>Vape Voidware (99 noites)</p>
+        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()</textarea>
+      </div>
+
+      <div class="card mini-card">
+        <img src="https://i.imgur.com/DUHhmPP.png" />
+        <p>Yumiara</p>
+        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game.HttpGet(game,'https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua'))()</textarea>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
