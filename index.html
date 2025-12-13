@@ -68,6 +68,7 @@
     box-shadow: 0 0 15px red;
     border: 2px solid red;
     transition: 0.3s;
+    cursor: pointer;
   }
   .card:hover {
     transform: scale(1.04);
@@ -79,6 +80,22 @@
   }
   .mini-card { text-align:center; }
   .mini-card p { margin-top:10px; font-size:20px; color:#ccc; }
+
+  /* Mensagem de aviso */
+  #msg-copy {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,0,0,0.85);
+    padding: 12px 25px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    display: none;
+    z-index: 9999;
+  }
 </style>
 </head>
 <body>
@@ -92,7 +109,7 @@
       <a href="https://deltaexploits.gg/delta-executor-android" class="card mini-card"><img src="https://i.imgur.com/ayUxVOR.png" /><p>Delta</p></a>
       <a href="https://wearedevs.net/d/Krnl" class="card mini-card"><img src="https://i.imgur.com/y88zL0G.png" /><p>KRNL</p></a>
       <a href="https://wearedevs.net/d/Ronix" class="card mini-card"><img src="https://i.imgur.com/nNdzDTU.png" /><p>Ronix</p></a>
-      <a href="https://wearedevs.net/d/Solara" class="card mini-card"><img src="https://i.imgur.com/NxiHjMb.png" /><p>Solara</p></a>
+      <a href="https://getsolara.dev/" class="card mini-card"><img src="https://i.imgur.com/NxiHjMb.png" /><p>Solara</p></a>
       <a href="https://wearedevs.net/d/Fluxus%20Z" class="card mini-card"><img src="https://i.imgur.com/oQzRUxk.png" /><p>Fluxus Z</p></a>
       <a href="https://wearedevs.net/d/JJSploit" class="card mini-card"><img src="https://i.imgur.com/aGR6fqU.png" /><p>JJSploit</p></a>
       <a href="https://deltaexploits.gg/delta-executor-ios" class="card mini-card"><img src="https://i.imgur.com/ayUxVOR.png" /><p>Delta iOS</p></a>
@@ -100,32 +117,63 @@
 
     <h2 class="section-title" style="color:red; text-shadow:0 0 10px red; margin-top:60px;">SCRIPTS</h2>
     <div class="card-container">
-      <div class="card mini-card">
+      <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()'>
         <img src="https://i.imgur.com/Ccq5JkP.png" />
         <p>Gravity Hub</p>
         <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
       </div>
 
-      <div class="card mini-card">
+      <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()'>
         <img src="https://i.imgur.com/ZhyS2x1.png" />
         <p>Quantum Onyx</p>
         <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</textarea>
       </div>
 
-      <div class="card mini-card">
+      <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()'>
         <img src="https://i.imgur.com/VViXuBP.png" />
         <p>Vape Voidware (99 noites)</p>
         <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()</textarea>
       </div>
 
-      <div class="card mini-card">
+      <div class="card mini-card script-card" data-script='loadstring(game.HttpGet(game,"https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua"))()'>
         <img src="https://i.imgur.com/DUHhmPP.png" />
         <p>Yumiara</p>
         <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game.HttpGet(game,'https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua'))()</textarea>
       </div>
-    </div>
 
+      <!-- Novo botão Haze -->
+      <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://haze.wtf/api/script"))()'>
+        <img src="https://i.imgur.com/LIyUhLu.png" />
+        <p>Haze (The Forge)</p>
+        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://haze.wtf/api/script"))()</textarea>
+      </div>
+    </div>
   </div>
+
+  <!-- Mensagem de erro/cópia -->
+  <div id="msg-copy"></div>
+
+<script>
+  const cards = document.querySelectorAll('.script-card');
+  const msg = document.getElementById('msg-copy');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const script = card.getAttribute('data-script');
+      navigator.clipboard.writeText(script).then(() => {
+        msg.innerText = '✅ Script copiado!';
+        msg.style.background = 'rgba(0,128,0,0.85)';
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 2000);
+      }).catch(() => {
+        msg.innerText = '❌ Script não copiado, tente copiar manualmente';
+        msg.style.background = 'rgba(255,0,0,0.85)';
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 3000);
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
