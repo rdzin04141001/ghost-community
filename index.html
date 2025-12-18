@@ -57,6 +57,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: flex-start;
     margin-top: 20px;
     gap: 25px;
   }
@@ -81,7 +82,6 @@
   .mini-card { text-align:center; }
   .mini-card p { margin-top:10px; font-size:20px; color:#ccc; }
 
-  /* Mensagem de aviso */
   #msg-copy {
     position: fixed;
     top: 20px;
@@ -96,6 +96,24 @@
     display: none;
     z-index: 9999;
   }
+  /* KRNL DESCONTINUADO */
+  .card.krnl { position: relative; overflow: hidden; }
+  .card.krnl img { filter: brightness(25%) blur(1px); }
+  .card.krnl .overlay-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff3b3b;
+    text-shadow: 0 0 10px red;
+    background: rgba(0,0,0,0.35);
+    pointer-events: none;
+  }
 </style>
 </head>
 <body>
@@ -104,10 +122,14 @@
     <img class="profile-img" src="https://i.imgur.com/mQjXU12.jpeg" />
     <h1>Ghost Community</h1>
 
-    <h2 class="section-title" style="color:red; text-shadow:0 0 10px red; margin-top:60px;">EXECUTORES</h2>
+    <h2 class="section-title" style="color:red; text-shadow:0 0 10px red;">EXECUTORES</h2>
     <div class="card-container">
       <a href="https://deltaexploits.gg/delta-executor-android" class="card mini-card"><img src="https://i.imgur.com/ayUxVOR.png" /><p>Delta</p></a>
-      <a href="https://wearedevs.net/d/Krnl" class="card mini-card"><img src="https://i.imgur.com/y88zL0G.png" /><p>KRNL</p></a>
+      <a href="https://wearedevs.net/d/Krnl" class="card mini-card krnl">
+        <img src="https://i.imgur.com/y88zL0G.png" />
+        <div class="overlay-text">CRIADORES DESISTIRAM...</div>
+        <p>KRNL</p>
+      </a>
       <a href="https://wearedevs.net/d/Ronix" class="card mini-card"><img src="https://i.imgur.com/nNdzDTU.png" /><p>Ronix</p></a>
       <a href="https://getsolara.dev/" class="card mini-card"><img src="https://i.imgur.com/NxiHjMb.png" /><p>Solara</p></a>
       <a href="https://wearedevs.net/d/Fluxus%20Z" class="card mini-card"><img src="https://i.imgur.com/oQzRUxk.png" /><p>Fluxus Z</p></a>
@@ -115,42 +137,40 @@
       <a href="https://deltaexploits.gg/delta-executor-ios" class="card mini-card"><img src="https://i.imgur.com/ayUxVOR.png" /><p>Delta iOS</p></a>
     </div>
 
-    <h2 class="section-title" style="color:red; text-shadow:0 0 10px red; margin-top:60px;">SCRIPTS</h2>
+    <h2 class="section-title" style="color:red; text-shadow:0 0 10px red;">SCRIPTS</h2>
     <div class="card-container">
       <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()'>
         <img src="https://i.imgur.com/Ccq5JkP.png" />
         <p>Gravity Hub</p>
-        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
+        <textarea readonly style="width:100%;height:80px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
       </div>
 
       <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()'>
         <img src="https://i.imgur.com/ZhyS2x1.png" />
         <p>Quantum Onyx</p>
-        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</textarea>
+        <textarea readonly style="width:100%;height:80px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</textarea>
       </div>
 
       <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()'>
         <img src="https://i.imgur.com/VViXuBP.png" />
         <p>Vape Voidware (99 noites)</p>
-        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()</textarea>
+        <textarea readonly style="width:100%;height:80px;">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()</textarea>
       </div>
 
       <div class="card mini-card script-card" data-script='loadstring(game.HttpGet(game,"https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua"))()'>
         <img src="https://i.imgur.com/DUHhmPP.png" />
         <p>Yumiara</p>
-        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game.HttpGet(game,'https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua'))()</textarea>
+        <textarea readonly style="width:100%;height:80px;">loadstring(game.HttpGet(game,"https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua"))()</textarea>
       </div>
 
-      <!-- Novo botão Haze -->
       <div class="card mini-card script-card" data-script='loadstring(game:HttpGet("https://haze.wtf/api/script"))()'>
         <img src="https://i.imgur.com/LIyUhLu.png" />
         <p>Haze (The Forge)</p>
-        <textarea readonly style="width:100%;height:80px;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #330000;background:#0b0b0b;color:#ffb3b3;font-size:13px;">loadstring(game:HttpGet("https://haze.wtf/api/script"))()</textarea>
+        <textarea readonly style="width:100%;height:80px;">loadstring(game:HttpGet("https://haze.wtf/api/script"))()</textarea>
       </div>
     </div>
   </div>
 
-  <!-- Mensagem de erro/cópia -->
   <div id="msg-copy"></div>
 
 <script>
@@ -174,6 +194,5 @@
     });
   });
 </script>
-
 </body>
 </html>
