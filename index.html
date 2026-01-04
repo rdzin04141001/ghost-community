@@ -6,15 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ICON DO SITE -->
-<link rel="icon" href="https://i.imgur.com/gcolXyx.png" type="image/png">
-<link rel="shortcut icon" href="https://i.imgur.com/gcolXyx.png">
-<link rel="apple-touch-icon" href="https://i.imgur.com/gcolXyx.png">
+<link rel="icon" type="image/png" href="https://i.imgur.com/LEB8X3E.png">
 
 <style>
 :root{
   --blue:#9be8ff;
-  --blue-soft:#c7f3ff;
-  --bg:#03090c;
+  --green:#6dffb2;
+  --bg:#04090b;
+  --card:rgba(10,35,30,.75);
 }
 
 *{box-sizing:border-box}
@@ -22,29 +21,28 @@
 body{
   margin:0;
   font-family:Inter,Arial,sans-serif;
-  background:
-    radial-gradient(circle at top,#0f3d46,#020606 70%);
+  background:radial-gradient(circle at top,#0f3d46,#020606 70%);
   color:#fff;
   overflow-x:hidden;
 }
 
-/* GRID */
+/* BACKGROUND GRID */
 .grid{
   position:fixed;
   inset:0;
   background-image:
     linear-gradient(rgba(155,232,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(155,232,255,.08) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(109,255,178,.08) 1px, transparent 1px);
   background-size:60px 60px;
-  animation:gridMove 40s linear infinite;
+  animation:gridMove 35s linear infinite;
   z-index:-3;
 }
 @keyframes gridMove{
   to{background-position:600px 600px,600px 600px}
 }
 
-/* SNOW + DOTS (ATRÁS DE TUDO) */
-.snow, .dot{
+/* SNOW */
+.snow, .dot-fall{
   position:fixed;
   top:-10px;
   pointer-events:none;
@@ -55,18 +53,18 @@ body{
   font-size:14px;
   animation:snowFall linear infinite;
 }
-.dot{
-  width:3px;
-  height:3px;
-  background:white;
+.dot-fall{
+  width:4px;
+  height:4px;
   border-radius:50%;
+  background:#fff;
   opacity:.6;
   animation:dotFall linear infinite;
 }
 @keyframes snowFall{to{transform:translateY(110vh)}}
 @keyframes dotFall{to{transform:translateY(110vh)}}
 
-/* CONTAINER */
+/* LAYOUT */
 .container{
   max-width:1400px;
   margin:auto;
@@ -75,122 +73,231 @@ body{
 
 /* HERO */
 .hero{
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
   gap:60px;
+  align-items:center;
 }
-
-.hero h1{
-  font-size:68px;
-  line-height:1.05;
+h1{
+  font-size:64px;
   margin:0;
-  font-weight:900;
 }
-.hero h1 span{
+h1 span{
   color:var(--blue);
-  text-shadow:0 0 25px var(--blue);
+  text-shadow:0 0 20px var(--blue);
 }
-
 .hero p{
-  margin-top:25px;
-  font-size:18px;
-  color:#d8eaff;
+  font-size:20px;
   max-width:520px;
+  color:#d8eaff;
 }
 
-/* BIO */
-.bio{
-  margin-top:80px;
+/* CODE BOX */
+.code-box{
+  background:rgba(5,10,20,.85);
+  border-radius:18px;
+  padding:18px;
+  border:1px solid rgba(155,232,255,.25);
+}
+.code-header{
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
+}
+.dot{width:12px;height:12px;border-radius:50%}
+.red{background:#ff5f56}
+.yellow{background:#ffbd2e}
+.green{background:#27c93f}
+pre{
+  margin:0;
+  font-family:Consolas,monospace;
+  font-size:14px;
+  color:#9ad1ff;
+}
+
+/* SECTIONS */
+.section{margin-top:120px}
+.section h2{
+  font-size:42px;
+  color:var(--blue);
+  margin-bottom:40px;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:26px;
+}
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:14px;
+  cursor:pointer;
+  transition:.3s;
+  border:1px solid rgba(155,232,255,.25);
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.04);
+  box-shadow:0 0 40px rgba(155,232,255,.8);
+}
+.card img{
+  width:100%;
+  border-radius:12px;
+}
+.card p{
+  margin-top:10px;
+  color:#fff;
+}
+textarea{
+  width:100%;
+  margin-top:10px;
+  background:#02040a;
+  color:#00ffb3;
+  border:1px solid #1b2b55;
+  border-radius:10px;
+  padding:10px;
+  font-family:monospace;
+}
+
+/* NOTIFICATION */
+#msg-copy{
+  position:fixed;
+  top:30px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:14px 28px;
+  border-radius:14px;
+  font-weight:bold;
+  font-size:16px;
+  display:none;
+  z-index:10000;
+  box-shadow:0 0 30px rgba(0,255,200,.9);
+  animation:slideDown .4s ease;
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translate(-50%,-20px)}
+  to{opacity:1;transform:translate(-50%,0)}
+}
+
+/* DISCORD */
+.discord-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:linear-gradient(135deg,#7c4dff,#b388ff);
+  color:#fff;
+  padding:14px 20px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 25px rgba(124,77,255,.9);
+  z-index:9999;
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:10px;
 }
-
-.bio img{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  box-shadow:0 0 25px rgba(155,232,255,.9);
+.discord-btn::before{
+  content:"";
+  width:22px;
+  height:22px;
+  background:url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg") center/contain no-repeat;
+  filter:invert(1);
 }
+.discord-btn:hover{transform:scale(1.1)}
 
-.bio-name{
-  font-size:48px;
-  font-weight:900;
-  color:#b7f7ff;
-  text-shadow:
-    0 0 6px #9be8ff,
-    0 0 18px #9be8ff,
-    0 0 40px #6dffb2;
-}
-
-.bio-desc{
-  margin-top:8px;
-  font-size:15px;
-  color:#d0e8ff;
-  max-width:520px;
-}
-
-/* RESPONSIVO */
 @media(max-width:900px){
-  .hero h1{font-size:48px}
-  .bio-name{font-size:36px}
+  .hero{grid-template-columns:1fr}
+  h1{font-size:48px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="grid"></div>
 
 <div class="container">
 
-  <section class="hero">
-    <div>
-      <h1>
-        O melhor site de scripts<br>
-        <span>sem encurtadores e vírus!</span>
-      </h1>
+<section class="hero">
+  <div>
+    <h1>Ghost RD<br><span>Scripts 100% Seguros</span></h1>
+    <p>o ghost rd sempre foca em trazer executores e scripts seguros, sem vírus e sem encurtadores.</p>
+  </div>
 
-      <p>
-        o ghost rd sempre foca em trazer executores e scripts 100%<br>
-        seguros
-      </p>
+  <div class="code-box">
+    <div class="code-header">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
     </div>
+<pre>loadstring(game:HttpGet("https://example.com/script.lua"))()</pre>
+  </div>
+</section>
 
-    <div class="bio">
-      <img src="https://i.imgur.com/6HNC5eZ.png">
-      <div>
-        <div class="bio-name">GHOST RD</div>
-        <div class="bio-desc">
-          Um youtuber pequeno que não se importa com dinheiro, mas sim
-          com a segurança de seus inscritos.
-        </div>
-      </div>
+<section class="section">
+  <h2>Scripts</h2>
+  <div class="cards">
+    <div class="card script-card" data-script='print("Ghost RD")'>
+      <img src="https://i.imgur.com/Ccq5JkP.png">
+      <p>Script Teste</p>
+      <textarea readonly>print("Ghost RD")</textarea>
     </div>
-  </section>
+  </div>
+</section>
 
 </div>
 
+<div id="msg-copy"></div>
+
+<a class="discord-btn" href="https://discord.gg/84CRgQbpYX" target="_blank">Discord</a>
+
+<audio id="sound-success" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+<audio id="sound-error" src="https://assets.mixkit.co/sfx/preview/mixkit-error-tone-473.mp3"></audio>
+
 <script>
-/* FLOCO DE NEVE */
-for(let i=0;i<45;i++){
+// SNOW
+for(let i=0;i<35;i++){
   const s=document.createElement("div");
   s.className="snow";
   s.textContent="❄";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=6+Math.random()*12+"s";
+  s.style.animationDuration=6+Math.random()*10+"s";
   s.style.opacity=Math.random();
   document.body.appendChild(s);
 }
 
-/* PONTOS BRANCOS */
-for(let i=0;i<80;i++){
+// DOTS
+for(let i=0;i<60;i++){
   const d=document.createElement("div");
-  d.className="dot";
+  d.className="dot-fall";
   d.style.left=Math.random()*100+"vw";
-  d.style.animationDuration=8+Math.random()*14+"s";
+  d.style.animationDuration=8+Math.random()*12+"s";
   document.body.appendChild(d);
 }
+
+// COPY SCRIPT
+document.querySelectorAll(".script-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    const msg=document.getElementById("msg-copy");
+    const successSound=document.getElementById("sound-success");
+    const errorSound=document.getElementById("sound-error");
+    const text=card.dataset.script;
+
+    navigator.clipboard.writeText(text).then(()=>{
+      msg.textContent="✅ Script copiado com sucesso!";
+      msg.style.background="rgba(0,200,140,.95)";
+      msg.style.display="block";
+      successSound.play();
+      setTimeout(()=>msg.style.display="none",2200);
+    }).catch(()=>{
+      msg.textContent="❌ Não foi possível copiar. Copie manualmente.";
+      msg.style.background="rgba(200,0,0,.95)";
+      msg.style.display="block";
+      errorSound.play();
+      setTimeout(()=>msg.style.display="none",3500);
+    });
+  });
+});
 </script>
 
 </body>
