@@ -1,32 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
 <title>Ghost Community</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 :root{
   --blue:#9be8ff;
   --green:#6dffb2;
-  --blue-glow:#c7f3ff;
-  --bg:#060b0d;
+  --bg:#04090b;
   --card:rgba(10,35,30,.75);
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
-  font-family:Inter,Segoe UI,Arial,sans-serif;
-  background:radial-gradient(circle at top,#0e2a2f,#020606 65%);
+  font-family:Inter,Arial,sans-serif;
+  background:radial-gradient(circle at top,#0f3d46,#020606 70%);
   color:#fff;
+  overflow-x:hidden;
 }
 
-/* GRID BACKGROUND */
-.grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,60,60,.10) 1px, transparent 1px),linear-gradient(90deg, rgba(120,200,255,.10) 1px, transparent 1px);background-size:60px 60px;animation:gridMove 30s linear infinite;z-index:-1}
-@keyframes gridMove{from{background-position:0 0,0 0}to{background-position:600px 600px,600px 600px}}
+/* BACKGROUND GRID */
+.grid{
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(155,232,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109,255,178,.08) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 35s linear infinite;
+  z-index:-3;
+}
+@keyframes gridMove{
+  to{background-position:600px 600px,600px 600px}
+}
 
+/* SNOW */
+.snow, .dot-fall{
+  position:fixed;
+  top:-10px;
+  pointer-events:none;
+  z-index:-2;
+}
+.snow{
+  color:#eaffff;
+  font-size:14px;
+  animation:snowFall linear infinite;
+}
+.dot-fall{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#fff;
+  opacity:.6;
+  animation:dotFall linear infinite;
+}
+@keyframes snowFall{to{transform:translateY(110vh)}}
+@keyframes dotFall{to{transform:translateY(110vh)}}
+
+/* LAYOUT */
 .container{
   max-width:1400px;
-  margin:0 auto;
+  margin:auto;
   padding:80px 40px;
 }
 
@@ -37,115 +75,141 @@ body{
   gap:60px;
   align-items:center;
 }
-.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(0,255,150,.15);color:#4dffb0;font-size:14px;animation:pulse 2s infinite}
-.badge.secure{background:rgba(0,180,255,.15);color:#7dd3ff}
-@keyframes pulse{0%{box-shadow:0 0 0 rgba(0,180,255,0)}50%{box-shadow:0 0 25px rgba(0,180,255,.6)}100%{box-shadow:0 0 0 rgba(0,180,255,0)}}
-.badge::before{content:"🔒";color:var(--blue)}
-
 h1{
-  font-size:64px;line-height:1.05;margin:20px 0;
+  font-size:64px;
+  margin:0;
 }
-h1 span{color:var(--blue)}
+h1 span{
+  color:var(--blue);
+  text-shadow:0 0 20px var(--blue);
+}
+.hero p{
+  font-size:20px;
+  max-width:520px;
+  color:#d8eaff;
+}
 
-.hero p{font-size:18px;color:#c7d2ff;max-width:520px;animation:fadeUp 1.2s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-.actions{display:flex;gap:18px;margin-top:35px}
-
-/* CODE CARD */
+/* CODE BOX */
 .code-box{
-  background:rgba(10,15,30,.85);
+  background:rgba(5,10,20,.85);
   border-radius:18px;
-  border:1px solid rgba(77,163,255,.25);
-  box-shadow:0 0 50px rgba(0,0,0,.7);
   padding:18px;
+  border:1px solid rgba(155,232,255,.25);
 }
 .code-header{
-  display:flex;gap:8px;margin-bottom:12px
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
 }
 .dot{width:12px;height:12px;border-radius:50%}
-.red{background:#ff5f56}.yellow{background:#ffbd2e}.green{background:#27c93f}
+.red{background:#ff5f56}
+.yellow{background:#ffbd2e}
+.green{background:#27c93f}
 pre{
-  margin:0;font-family:Consolas,monospace;
-  font-size:14px;color:#9ad1ff
+  margin:0;
+  font-family:Consolas,monospace;
+  font-size:14px;
+  color:#9ad1ff;
 }
-
-/* STATS */
-.stats{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;margin-top:80px
-}
-.stat{
-  background:var(--card);
-  border:1px solid rgba(77,163,255,.25);
-  border-radius:18px;padding:30px;
-  backdrop-filter:blur(12px)
-}
-.stat h2{margin:0;color:var(--blue);font-size:36px}
-.neon-name{
-  font-size:48px;
-  font-weight:900;
-  margin-top:10px;
-  color:#b7f7ff;
-  text-shadow:
-    0 0 5px #9be8ff,
-    0 0 15px #9be8ff,
-    0 0 30px #6dffb2,
-    0 0 60px #6dffb2;
-  animation:neonPulse 3s ease-in-out infinite;
-}
-@keyframes neonPulse{
-  0%,100%{opacity:1}
-  50%{opacity:.85}
-}
-.stat p{margin:8px 0 0;color:#aaa}
 
 /* SECTIONS */
 .section{margin-top:120px}
 .section h2{
-  font-size:42px;margin-bottom:40px;
-  color:var(--blue)
+  font-size:42px;
+  color:var(--blue);
+  margin-bottom:40px;
 }
 
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
-.card{background:var(--card);border:1px solid rgba(77,163,255,.25);border-radius:18px;padding:14px;transition:.35s;cursor:pointer;min-height:260px;display:flex;flex-direction:column;justify-content:flex-start}
-.card:hover{transform:translateY(-10px) scale(1.04);box-shadow:0 0 45px rgba(77,163,255,.8)}
-.card{animation:float 6s ease-in-out infinite}
-@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
-.card img{width:100%;border-radius:12px}
-.card p{margin-top:10px;color:#ddd;background:none;text-decoration:none;border:none;box-shadow:none}
-
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:26px;
+}
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:14px;
+  cursor:pointer;
+  transition:.3s;
+  border:1px solid rgba(155,232,255,.25);
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.04);
+  box-shadow:0 0 40px rgba(155,232,255,.8);
+}
+.card img{
+  width:100%;
+  border-radius:12px;
+}
+.card p{
+  margin-top:10px;
+  color:#fff;
+}
 textarea{
-  width:100%;margin-top:10px;
-  background:#02040a;color:#00ffb3;
-  border:1px solid #1b2b55;border-radius:10px;
-  padding:10px;font-family:monospace
+  width:100%;
+  margin-top:10px;
+  background:#02040a;
+  color:#00ffb3;
+  border:1px solid #1b2b55;
+  border-radius:10px;
+  padding:10px;
+  font-family:monospace;
 }
 
+/* NOTIFICATION */
 #msg-copy{
-  position:fixed;top:20px;left:50%;transform:translateX(-50%);
-  background:rgba(0,150,255,.85);padding:14px 28px;
-  border-radius:14px;font-weight:bold;display:none
+  position:fixed;
+  top:30px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:14px 28px;
+  border-radius:14px;
+  font-weight:bold;
+  font-size:16px;
+  display:none;
+  z-index:10000;
+  box-shadow:0 0 30px rgba(0,255,200,.9);
+  animation:slideDown .4s ease;
 }
+@keyframes slideDown{
+  from{opacity:0;transform:translate(-50%,-20px)}
+  to{opacity:1;transform:translate(-50%,0)}
+}
+
+/* DISCORD */
+.discord-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:linear-gradient(135deg,#7c4dff,#b388ff);
+  color:#fff;
+  padding:14px 20px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 25px rgba(124,77,255,.9);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.discord-btn::before{
+  content:"";
+  width:22px;
+  height:22px;
+  background:url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg") center/contain no-repeat;
+  filter:invert(1);
+}
+.discord-btn:hover{transform:scale(1.1)}
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   h1{font-size:48px}
 }
-/* SNOW */
-.snow{position:fixed;top:-10px;color:#eaffff;font-size:14px;animation:snowFall linear infinite;pointer-events:none;z-index:-2}
-@keyframes snowFall{to{transform:translateY(110vh)}}
-
-/* FLOATING DOTS */
-.dot-fall{position:fixed;top:-10px;width:4px;height:4px;border-radius:50%;background:#ffffff;opacity:.6;animation:dotFall linear infinite;pointer-events:none;z-index:-2}
-@keyframes dotFall{to{transform:translateY(110vh)}}
-
-/* DISCORD BUTTON */
-.discord-btn{position:fixed;bottom:25px;right:25px;background:linear-gradient(135deg,#7c4dff,#b388ff);color:#fff;padding:14px 20px;border-radius:999px;font-weight:bold;text-decoration:none;box-shadow:0 0 25px rgba(124,77,255,.9);transition:.3s;z-index:9999;display:flex;align-items:center;gap:10px}
-.discord-btn::before{content:"";width:22px;height:22px;background:url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg') center/contain no-repeat;filter:invert(1)}
-.discord-btn:hover{transform:scale(1.1)}
 </style>
 </head>
+
 <body>
 <div class="grid"></div>
 
@@ -153,10 +217,8 @@ textarea{
 
 <section class="hero">
   <div>
-    <div class="badge secure">🔒 SEGURO</div>
-    <h1>O melhor site de scripts<br><span>sem encurtadores e vírus!</span></h1>
-    <p><strong>o ghost rd sempre foca em trazer executores e scripts 100% seguros</strong></p>
-    
+    <h1>Ghost RD<br><span>Scripts 100% Seguros</span></h1>
+    <p>o ghost rd sempre foca em trazer executores e scripts seguros, sem vírus e sem encurtadores.</p>
   </div>
 
   <div class="code-box">
@@ -165,70 +227,17 @@ textarea{
       <div class="dot yellow"></div>
       <div class="dot green"></div>
     </div>
-<pre>-- Initialize Executor
-local script = require("bypass")
-
--- Configure settings
-executor.config.lua({
-  bypass = "hyperion"
-})
-
--- Execute script
-local success = lua:execute(script)</pre>
+<pre>loadstring(game:HttpGet("https://example.com/script.lua"))()</pre>
   </div>
-</section>
-
-<section class="stats">
-  <div class="stat">
-    <h2>Criador do site</h2>
-    <div style="display:flex;align-items:center;gap:18px;margin-top:10px">
-      <img src="https://i.imgur.com/6HNC5eZ.png" style="width:64px;height:64px;border-radius:50%;box-shadow:0 0 25px rgba(155,232,255,.9)">
-      <div class="neon-name" style="font-size:56px">GHOST RD</div>
-    </div>
-    <p style="margin-top:18px;font-size:18px;color:#ddd;max-width:420px">"Um criador focado totalmente em segurança, qualidade e transparência para a comunidade. Aqui não é sobre dinheiro — é sobre confiança."</p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Executores</h2>
-  <div class="cards">
-  <a href="https://deltaexploits.gg/delta-executor-android" class="card"><img src="https://i.imgur.com/ayUxVOR.png"><p>Delta (Android)</p></a>
-  <a href="https://deltaexploits.gg/delta-executor-ios" class="card"><img src="https://i.imgur.com/ayUxVOR.png"><p>Delta (iOS)</p></a>
-  <a href="https://getsolara.dev/" class="card"><img src="https://i.imgur.com/NxiHjMb.png"><p>Solara</p></a>
-  <a href="https://wearedevs.net/d/Fluxus%20Z" class="card"><img src="https://i.imgur.com/oQzRUxk.png"><p>Fluxus Z</p></a>
-  <a href="https://wearedevs.net/d/Ronix" class="card"><img src="https://i.imgur.com/nNdzDTU.png"><p>Ronix</p></a>
-  <a href="https://wearedevs.net/d/JJSploit" class="card"><img src="https://i.imgur.com/aGR6fqU.png"><p>JJSploit</p></a>
-  <a href="https://wearedevs.net/d/Bunni" class="card" target="_blank"><img src="https://imgur.com/PDh5qtW.png"><p>Bunni Executor</p></a>
-</div>
 </section>
 
 <section class="section">
   <h2>Scripts</h2>
   <div class="cards">
-    <div class="card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()'>
+    <div class="card script-card" data-script='print("Ghost RD")'>
       <img src="https://i.imgur.com/Ccq5JkP.png">
-      <p>Gravity Hub</p>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
-    </div>
-    <div class="card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()'>
-      <img src="https://i.imgur.com/ZhyS2x1.png">
-      <p>Quantum Onyx</p>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()</textarea>
-    </div>
-    <div class="card script-card" data-script='loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()'>
-      <img src="https://i.imgur.com/VViXuBP.png">
-      <p>Vape Voidware (99 noites)</p>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", true))()</textarea>
-    </div>
-    <div class="card script-card" data-script='loadstring(game.HttpGet(game,"https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua"))()'>
-      <img src="https://i.imgur.com/DUHhmPP.png">
-      <p>Yumiara</p>
-      <textarea readonly>loadstring(game.HttpGet(game,"https://raw.githubusercontent.com/Yumiara/Python/refs/heads/main/BloxFruit-XYZ.lua"))()</textarea>
-    </div>
-    <div class="card script-card" data-script='loadstring(game:HttpGet("https://haze.wtf/api/script"))()'>
-      <img src="https://imgur.com/IUFD9oL.png">
-      <p>Haze (The Forge)</p>
-      <textarea readonly>loadstring(game:HttpGet("https://haze.wtf/api/script"))()</textarea>
+      <p>Script Teste</p>
+      <textarea readonly>print("Ghost RD")</textarea>
     </div>
   </div>
 </section>
@@ -236,48 +245,58 @@ local success = lua:execute(script)</pre>
 </div>
 
 <div id="msg-copy"></div>
+
 <a class="discord-btn" href="https://discord.gg/84CRgQbpYX" target="_blank">Discord</a>
+
+<!-- SOUNDS -->
+<audio id="sound-success" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+<audio id="sound-error" src="https://assets.mixkit.co/sfx/preview/mixkit-error-tone-473.mp3"></audio>
+
 <script>
-// SNOW GENERATOR
-for(let i=0;i<40;i++){
- const s=document.createElement('div');
- s.className='snow';
- s.innerText='❄';
- s.style.left=Math.random()*100+'vw';
- s.style.animationDuration=5+Math.random()*10+'s';
- s.style.opacity=Math.random();
- document.body.appendChild(s);
+// SNOW
+for(let i=0;i<35;i++){
+  const s=document.createElement("div");
+  s.className="snow";
+  s.textContent="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=6+Math.random()*10+"s";
+  s.style.opacity=Math.random();
+  document.body.appendChild(s);
 }
 
-// WHITE DOTS GENERATOR
+// DOTS
 for(let i=0;i<60;i++){
- const d=document.createElement('div');
- d.className='dot-fall';
- d.style.left=Math.random()*100+'vw';
- d.style.animationDuration=8+Math.random()*12+'s';
- d.style.opacity=Math.random();
- document.body.appendChild(d);
+  const d=document.createElement("div");
+  d.className="dot-fall";
+  d.style.left=Math.random()*100+"vw";
+  d.style.animationDuration=8+Math.random()*12+"s";
+  document.body.appendChild(d);
 }
 
-document.querySelectorAll('.script-card').forEach(c=>{
-  c.onclick=()=>{
-    const m=document.getElementById('msg-copy');
-    const text=c.dataset.script;
+// COPY SCRIPT
+document.querySelectorAll(".script-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    const msg=document.getElementById("msg-copy");
+    const successSound=document.getElementById("sound-success");
+    const errorSound=document.getElementById("sound-error");
+    const text=card.dataset.script;
+
     navigator.clipboard.writeText(text).then(()=>{
-      m.innerText='✅ Script copiado com sucesso!';
-      m.style.background='rgba(0,180,120,.9)';
-      m.style.display='block';
-      setTimeout(()=>m.style.display='none',2200);
+      msg.textContent="✅ Script copiado com sucesso!";
+      msg.style.background="rgba(0,200,140,.95)";
+      msg.style.display="block";
+      successSound.play();
+      setTimeout(()=>msg.style.display="none",2200);
     }).catch(()=>{
-      m.innerText='❌ Não foi possível copiar automaticamente. Copie manualmente.';
-      m.style.background='rgba(180,0,0,.9)';
-      m.style.display='block';
-      setTimeout(()=>m.style.display='none',3500);
+      msg.textContent="❌ Não foi possível copiar. Copie manualmente.";
+      msg.style.background="rgba(200,0,0,.95)";
+      msg.style.display="block";
+      errorSound.play();
+      setTimeout(()=>msg.style.display="none",3500);
     });
-  }
-})
-  }
-})
+  });
+});
 </script>
+
 </body>
 </html>
