@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Ghost Community</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ghost Community</title>
+
+  <!-- ÍCONE DO SITE -->
+  <link rel="icon" href="https://i.imgur.com/gcolXyx.png" type="image/png">
+  <link rel="apple-touch-icon" href="https://i.imgur.com/gcolXyx.png">
+
+  <!-- SEO / PREVIEW -->
+  <meta name="title" content="Ghost Community">
+  <meta name="description" content="O melhor site de scripts sem encurtadores e vírus. Segurança em primeiro lugar.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ghost Community">
+  <meta property="og:description" content="Executores e scripts 100% seguros, sem vírus e sem encurtadores.">
+  <meta property="og:image" content="https://i.imgur.com/gcolXyx.png">
+  <meta name="theme-color" content="#6dffb2">
 
 <style>
 :root{
   --blue:#9be8ff;
   --green:#6dffb2;
-  --bg:#04090b;
+  --bg:#020606;
   --card:rgba(10,35,30,.75);
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:radial-gradient(circle at top,#0f3d46,#020606 70%);
+  font-family:Segoe UI,Arial,sans-serif;
+  background:radial-gradient(circle at top,#0e2a2f,#020606 65%);
   color:#fff;
-  overflow-x:hidden;
 }
 
-/* BACKGROUND GRID */
+/* GRID */
 .grid{
   position:fixed;
   inset:0;
   background-image:
-    linear-gradient(rgba(155,232,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(109,255,178,.08) 1px, transparent 1px);
+    linear-gradient(rgba(120,200,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,200,255,.08) 1px, transparent 1px);
   background-size:60px 60px;
-  animation:gridMove 35s linear infinite;
+  animation:gridMove 30s linear infinite;
   z-index:-3;
 }
 @keyframes gridMove{
+  from{background-position:0 0,0 0}
   to{background-position:600px 600px,600px 600px}
 }
 
-/* SNOW */
-.snow, .dot-fall{
+/* SNOW + DOTS */
+.snow,.dot{
   position:fixed;
   top:-10px;
   pointer-events:none;
   z-index:-2;
 }
-.snow{
-  color:#eaffff;
-  font-size:14px;
-  animation:snowFall linear infinite;
-}
-.dot-fall{
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#fff;
-  opacity:.6;
-  animation:dotFall linear infinite;
-}
+.snow{color:#eaffff;font-size:14px;animation:snowFall linear infinite}
+.dot{width:4px;height:4px;border-radius:50%;background:#fff;opacity:.6;animation:dotFall linear infinite}
 @keyframes snowFall{to{transform:translateY(110vh)}}
 @keyframes dotFall{to{transform:translateY(110vh)}}
 
-/* LAYOUT */
 .container{
   max-width:1400px;
   margin:auto;
@@ -77,39 +78,41 @@ body{
 }
 h1{
   font-size:64px;
-  margin:0;
+  line-height:1.05;
 }
-h1 span{
-  color:var(--blue);
-  text-shadow:0 0 20px var(--blue);
-}
+h1 span{color:var(--blue)}
 .hero p{
-  font-size:20px;
+  font-size:18px;
+  color:#c7d2ff;
   max-width:520px;
-  color:#d8eaff;
 }
 
-/* CODE BOX */
-.code-box{
-  background:rgba(5,10,20,.85);
-  border-radius:18px;
-  padding:18px;
-  border:1px solid rgba(155,232,255,.25);
-}
-.code-header{
+/* BIO */
+.creator{
   display:flex;
-  gap:8px;
-  margin-bottom:10px;
+  align-items:center;
+  gap:20px;
+  margin-top:80px;
 }
-.dot{width:12px;height:12px;border-radius:50%}
-.red{background:#ff5f56}
-.yellow{background:#ffbd2e}
-.green{background:#27c93f}
-pre{
-  margin:0;
-  font-family:Consolas,monospace;
-  font-size:14px;
-  color:#9ad1ff;
+.creator img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  box-shadow:0 0 25px var(--blue);
+}
+.creator-name{
+  font-size:56px;
+  font-weight:900;
+  color:#b7f7ff;
+  text-shadow:
+    0 0 5px #9be8ff,
+    0 0 15px #9be8ff,
+    0 0 30px #6dffb2;
+}
+.creator p{
+  max-width:500px;
+  font-size:18px;
+  color:#ddd;
 }
 
 /* SECTIONS */
@@ -120,7 +123,6 @@ pre{
   margin-bottom:40px;
 }
 
-/* CARDS */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -128,24 +130,23 @@ pre{
 }
 .card{
   background:var(--card);
+  border:1px solid rgba(77,163,255,.25);
   border-radius:18px;
   padding:14px;
   cursor:pointer;
   transition:.3s;
-  border:1px solid rgba(155,232,255,.25);
 }
 .card:hover{
-  transform:translateY(-8px) scale(1.04);
-  box-shadow:0 0 40px rgba(155,232,255,.8);
+  transform:translateY(-10px) scale(1.04);
+  box-shadow:0 0 40px rgba(77,163,255,.8);
 }
 .card img{
   width:100%;
   border-radius:12px;
 }
-.card p{
-  margin-top:10px;
-  color:#fff;
-}
+.card p{margin-top:10px;color:#ddd}
+
+/* SCRIPT */
 textarea{
   width:100%;
   margin-top:10px;
@@ -166,15 +167,9 @@ textarea{
   padding:14px 28px;
   border-radius:14px;
   font-weight:bold;
-  font-size:16px;
   display:none;
-  z-index:10000;
-  box-shadow:0 0 30px rgba(0,255,200,.9);
-  animation:slideDown .4s ease;
-}
-@keyframes slideDown{
-  from{opacity:0;transform:translate(-50%,-20px)}
-  to{opacity:1;transform:translate(-50%,0)}
+  z-index:9999;
+  box-shadow:0 0 25px rgba(0,255,180,.9);
 }
 
 /* DISCORD */
@@ -186,22 +181,20 @@ textarea{
   color:#fff;
   padding:14px 20px;
   border-radius:999px;
-  text-decoration:none;
   font-weight:bold;
-  box-shadow:0 0 25px rgba(124,77,255,.9);
-  z-index:9999;
+  text-decoration:none;
   display:flex;
   align-items:center;
   gap:10px;
+  box-shadow:0 0 25px rgba(124,77,255,.9);
 }
 .discord-btn::before{
   content:"";
   width:22px;
   height:22px;
-  background:url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg") center/contain no-repeat;
+  background:url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg') center/contain no-repeat;
   filter:invert(1);
 }
-.discord-btn:hover{transform:scale(1.1)}
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
@@ -211,33 +204,33 @@ textarea{
 </head>
 
 <body>
+
 <div class="grid"></div>
 
 <div class="container">
 
 <section class="hero">
   <div>
-    <h1>Ghost RD<br><span>Scripts 100% Seguros</span></h1>
-    <p>o ghost rd sempre foca em trazer executores e scripts seguros, sem vírus e sem encurtadores.</p>
-  </div>
-
-  <div class="code-box">
-    <div class="code-header">
-      <div class="dot red"></div>
-      <div class="dot yellow"></div>
-      <div class="dot green"></div>
-    </div>
-<pre>loadstring(game:HttpGet("https://example.com/script.lua"))()</pre>
+    <h1>O melhor site de scripts<br><span>sem encurtadores e vírus!</span></h1>
+    <p><strong>o ghost rd sempre foca em trazer executores e scripts 100% seguros</strong></p>
   </div>
 </section>
+
+<div class="creator">
+  <img src="https://i.imgur.com/6HNC5eZ.png">
+  <div>
+    <div class="creator-name">GHOST RD</div>
+    <p>Um youtuber pequeno que não se importa com dinheiro, mas sim com a segurança de seus inscritos.</p>
+  </div>
+</div>
 
 <section class="section">
   <h2>Scripts</h2>
   <div class="cards">
-    <div class="card script-card" data-script='print("Ghost RD")'>
+    <div class="card script-card" data-script='print("Hello Ghost")'>
       <img src="https://i.imgur.com/Ccq5JkP.png">
-      <p>Script Teste</p>
-      <textarea readonly>print("Ghost RD")</textarea>
+      <p>Exemplo Script</p>
+      <textarea readonly>print("Hello Ghost")</textarea>
     </div>
   </div>
 </section>
@@ -245,56 +238,43 @@ textarea{
 </div>
 
 <div id="msg-copy"></div>
-
 <a class="discord-btn" href="https://discord.gg/84CRgQbpYX" target="_blank">Discord</a>
-
-<!-- SOUNDS -->
-<audio id="sound-success" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
-<audio id="sound-error" src="https://assets.mixkit.co/sfx/preview/mixkit-error-tone-473.mp3"></audio>
 
 <script>
 // SNOW
-for(let i=0;i<35;i++){
-  const s=document.createElement("div");
-  s.className="snow";
-  s.textContent="❄";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=6+Math.random()*10+"s";
-  s.style.opacity=Math.random();
+for(let i=0;i<40;i++){
+  const s=document.createElement('div');
+  s.className='snow';
+  s.innerText='❄';
+  s.style.left=Math.random()*100+'vw';
+  s.style.animationDuration=5+Math.random()*10+'s';
   document.body.appendChild(s);
 }
-
 // DOTS
 for(let i=0;i<60;i++){
-  const d=document.createElement("div");
-  d.className="dot-fall";
-  d.style.left=Math.random()*100+"vw";
-  d.style.animationDuration=8+Math.random()*12+"s";
+  const d=document.createElement('div');
+  d.className='dot';
+  d.style.left=Math.random()*100+'vw';
+  d.style.animationDuration=8+Math.random()*12+'s';
   document.body.appendChild(d);
 }
 
 // COPY SCRIPT
-document.querySelectorAll(".script-card").forEach(card=>{
-  card.addEventListener("click",()=>{
-    const msg=document.getElementById("msg-copy");
-    const successSound=document.getElementById("sound-success");
-    const errorSound=document.getElementById("sound-error");
-    const text=card.dataset.script;
-
-    navigator.clipboard.writeText(text).then(()=>{
-      msg.textContent="✅ Script copiado com sucesso!";
-      msg.style.background="rgba(0,200,140,.95)";
-      msg.style.display="block";
-      successSound.play();
-      setTimeout(()=>msg.style.display="none",2200);
+document.querySelectorAll('.script-card').forEach(card=>{
+  card.onclick=()=>{
+    const msg=document.getElementById('msg-copy');
+    navigator.clipboard.writeText(card.dataset.script).then(()=>{
+      msg.innerText='✅ Script copiado com sucesso!';
+      msg.style.background='rgba(0,200,140,.95)';
+      msg.style.display='block';
+      setTimeout(()=>msg.style.display='none',2200);
     }).catch(()=>{
-      msg.textContent="❌ Não foi possível copiar. Copie manualmente.";
-      msg.style.background="rgba(200,0,0,.95)";
-      msg.style.display="block";
-      errorSound.play();
-      setTimeout(()=>msg.style.display="none",3500);
+      msg.innerText='❌ Não foi possível copiar. Copie manualmente.';
+      msg.style.background='rgba(200,0,0,.95)';
+      msg.style.display='block';
+      setTimeout(()=>msg.style.display='none',3500);
     });
-  });
+  }
 });
 </script>
 
