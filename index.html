@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Ghost Community</title>
+<title>Ghost RD</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ICON DO SITE -->
@@ -10,61 +10,61 @@
 
 <style>
 :root{
-  --blue:#9be8ff;
-  --green:#6dffb2;
-  --bg:#04090b;
-  --card:rgba(10,35,30,.75);
+  --blue:#b8f1ff;
+  --green:#7dffb3;
+  --bg:#050b10;
+  --card:rgba(15,30,35,.8);
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:radial-gradient(circle at top,#0f3d46,#020606 70%);
+  font-family:Arial,Helvetica,sans-serif;
+  background:radial-gradient(circle at top,#0d3a44,#020606 70%);
   color:#fff;
   overflow-x:hidden;
 }
 
-/* BACKGROUND GRID */
+/* GRID BACKGROUND */
 .grid{
   position:fixed;
   inset:0;
   background-image:
-    linear-gradient(rgba(155,232,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(109,255,178,.08) 1px, transparent 1px);
+    linear-gradient(rgba(180,240,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,255,190,.08) 1px, transparent 1px);
   background-size:60px 60px;
-  animation:gridMove 35s linear infinite;
-  z-index:-3;
+  animation:gridMove 40s linear infinite;
+  z-index:-5;
 }
 @keyframes gridMove{
   to{background-position:600px 600px,600px 600px}
 }
 
-/* SNOW */
-.snow, .dot-fall{
+/* SNOW + DOTS */
+.snow,.dot{
   position:fixed;
   top:-10px;
   pointer-events:none;
-  z-index:-2;
+  z-index:-4;
 }
 .snow{
-  color:#eaffff;
+  color:#fff;
   font-size:14px;
-  animation:snowFall linear infinite;
+  animation:fall linear infinite;
 }
-.dot-fall{
-  width:4px;
-  height:4px;
+.dot{
+  width:4px;height:4px;
   border-radius:50%;
   background:#fff;
-  opacity:.6;
-  animation:dotFall linear infinite;
+  opacity:.5;
+  animation:fall linear infinite;
 }
-@keyframes snowFall{to{transform:translateY(110vh)}}
-@keyframes dotFall{to{transform:translateY(110vh)}}
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
 
-/* LAYOUT */
+/* CONTAINER */
 .container{
   max-width:1400px;
   margin:auto;
@@ -74,37 +74,37 @@ body{
 /* HERO */
 .hero{
   display:grid;
-  grid-template-columns:1.2fr 1fr;
+  grid-template-columns:1.3fr 1fr;
   gap:60px;
   align-items:center;
 }
-h1{
-  font-size:64px;
+.hero h1{
+  font-size:70px;
   margin:0;
 }
-h1 span{
+.hero h1 span{
   color:var(--blue);
-  text-shadow:0 0 20px var(--blue);
+  text-shadow:0 0 25px var(--blue);
 }
 .hero p{
   font-size:20px;
-  max-width:520px;
-  color:#d8eaff;
+  max-width:600px;
+  color:#dff6ff;
 }
 
 /* CODE BOX */
 .code-box{
-  background:rgba(5,10,20,.85);
+  background:rgba(5,10,20,.9);
   border-radius:18px;
   padding:18px;
-  border:1px solid rgba(155,232,255,.25);
+  border:1px solid rgba(180,240,255,.3);
 }
 .code-header{
   display:flex;
   gap:8px;
   margin-bottom:10px;
 }
-.dot{width:12px;height:12px;border-radius:50%}
+.dot-ui{width:12px;height:12px;border-radius:50%}
 .red{background:#ff5f56}
 .yellow{background:#ffbd2e}
 .green{background:#27c93f}
@@ -118,7 +118,7 @@ pre{
 /* SECTIONS */
 .section{margin-top:120px}
 .section h2{
-  font-size:42px;
+  font-size:46px;
   color:var(--blue);
   margin-bottom:40px;
 }
@@ -135,19 +135,22 @@ pre{
   padding:14px;
   cursor:pointer;
   transition:.3s;
-  border:1px solid rgba(155,232,255,.25);
+  border:1px solid rgba(180,240,255,.25);
 }
 .card:hover{
-  transform:translateY(-8px) scale(1.04);
-  box-shadow:0 0 40px rgba(155,232,255,.8);
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 0 40px rgba(150,240,255,.9);
 }
 .card img{
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
+}
+.card h3{
+  margin:12px 0 6px;
 }
 .card p{
-  margin-top:10px;
-  color:#fff;
+  font-size:14px;
+  color:#dff;
 }
 textarea{
   width:100%;
@@ -161,23 +164,16 @@ textarea{
 }
 
 /* NOTIFICATION */
-#msg-copy{
+#notify{
   position:fixed;
   top:30px;
   left:50%;
   transform:translateX(-50%);
-  padding:14px 28px;
-  border-radius:14px;
+  padding:14px 30px;
+  border-radius:16px;
   font-weight:bold;
-  font-size:16px;
   display:none;
-  z-index:10000;
-  box-shadow:0 0 30px rgba(0,255,200,.9);
-  animation:slideDown .4s ease;
-}
-@keyframes slideDown{
-  from{opacity:0;transform:translate(-50%,-20px)}
-  to{opacity:1;transform:translate(-50%,0)}
+  z-index:9999;
 }
 
 /* DISCORD */
@@ -187,28 +183,26 @@ textarea{
   right:25px;
   background:linear-gradient(135deg,#7c4dff,#b388ff);
   color:#fff;
-  padding:14px 20px;
+  padding:14px 22px;
   border-radius:999px;
   text-decoration:none;
   font-weight:bold;
   box-shadow:0 0 25px rgba(124,77,255,.9);
-  z-index:9999;
   display:flex;
   align-items:center;
   gap:10px;
+  z-index:9999;
 }
 .discord-btn::before{
   content:"";
-  width:22px;
-  height:22px;
+  width:22px;height:22px;
   background:url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg") center/contain no-repeat;
   filter:invert(1);
 }
-.discord-btn:hover{transform:scale(1.1)}
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
-  h1{font-size:48px}
+  .hero h1{font-size:52px}
 }
 </style>
 </head>
@@ -218,85 +212,122 @@ textarea{
 
 <div class="container">
 
+<!-- HERO -->
 <section class="hero">
   <div>
-    <h1>Ghost RD<br><span>Scripts 100% Seguros</span></h1>
-    <p>o ghost rd sempre foca em trazer executores e scripts seguros, sem vírus e sem encurtadores.</p>
+    <h1>Ghost RD<br><span>Scripts & Executores</span></h1>
+    <p>o ghost rd sempre foca em trazer executores e scripts 100% seguros, sem vírus e sem encurtadores.</p>
   </div>
 
   <div class="code-box">
     <div class="code-header">
-      <div class="dot red"></div>
-      <div class="dot yellow"></div>
-      <div class="dot green"></div>
+      <div class="dot-ui red"></div>
+      <div class="dot-ui yellow"></div>
+      <div class="dot-ui green"></div>
     </div>
-<pre>loadstring(game:HttpGet("https://example.com/script.lua"))()</pre>
+<pre>loadstring(game:HttpGet("https://ghostrd/scripts.lua"))()</pre>
   </div>
 </section>
 
+<!-- EXECUTORES -->
 <section class="section">
-  <h2>Scripts</h2>
-  <div class="cards">
-    <div class="card script-card" data-script='print("Ghost RD")'>
-      <img src="https://i.imgur.com/Ccq5JkP.png">
-      <p>Script Teste</p>
-      <textarea readonly>print("Ghost RD")</textarea>
-    </div>
-  </div>
+<h2>Executores</h2>
+<div class="cards">
+
+<div class="card">
+<img src="https://i.imgur.com/PDh5qtW.png">
+<h3>Bunni Executor</h3>
+<p>Executor leve e confiável.</p>
+</div>
+
+<div class="card">
+<img src="https://i.imgur.com/6HNC5eZ.png">
+<h3>Fluxus</h3>
+<p>Popular e estável.</p>
+</div>
+
+<div class="card">
+<img src="https://i.imgur.com/IUFD9oL.png">
+<h3>Haze (The Forge)</h3>
+<p>Executor focado em segurança.</p>
+</div>
+
+<div class="card">
+<img src="https://i.imgur.com/Ccq5JkP.png">
+<h3>Delta</h3>
+<p>Executor rápido.</p>
+</div>
+
+</div>
+</section>
+
+<!-- SCRIPTS -->
+<section class="section">
+<h2>Scripts</h2>
+<div class="cards">
+
+<div class="card script" data-script='print("Ghost RD Script 1")'>
+<h3>Script Universal</h3>
+<p>Clique para copiar</p>
+<textarea readonly>print("Ghost RD Script 1")</textarea>
+</div>
+
+<div class="card script" data-script='print("Ghost RD Script 2")'>
+<h3>Auto Farm</h3>
+<p>Clique para copiar</p>
+<textarea readonly>print("Ghost RD Script 2")</textarea>
+</div>
+
+<div class="card script" data-script='print("Ghost RD Script 3")'>
+<h3>ESP + Aimbot</h3>
+<p>Clique para copiar</p>
+<textarea readonly>print("Ghost RD Script 3")</textarea>
+</div>
+
+</div>
 </section>
 
 </div>
 
-<div id="msg-copy"></div>
+<div id="notify"></div>
 
 <a class="discord-btn" href="https://discord.gg/84CRgQbpYX" target="_blank">Discord</a>
 
-<audio id="sound-success" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
-<audio id="sound-error" src="https://assets.mixkit.co/sfx/preview/mixkit-error-tone-473.mp3"></audio>
-
 <script>
-// SNOW
-for(let i=0;i<35;i++){
+// SNOW + DOTS
+for(let i=0;i<40;i++){
   const s=document.createElement("div");
   s.className="snow";
   s.textContent="❄";
   s.style.left=Math.random()*100+"vw";
   s.style.animationDuration=6+Math.random()*10+"s";
-  s.style.opacity=Math.random();
   document.body.appendChild(s);
 }
-
-// DOTS
 for(let i=0;i<60;i++){
   const d=document.createElement("div");
-  d.className="dot-fall";
+  d.className="dot";
   d.style.left=Math.random()*100+"vw";
   d.style.animationDuration=8+Math.random()*12+"s";
   document.body.appendChild(d);
 }
 
 // COPY SCRIPT
-document.querySelectorAll(".script-card").forEach(card=>{
-  card.addEventListener("click",()=>{
-    const msg=document.getElementById("msg-copy");
-    const successSound=document.getElementById("sound-success");
-    const errorSound=document.getElementById("sound-error");
+document.querySelectorAll(".script").forEach(card=>{
+  card.onclick=()=>{
     const text=card.dataset.script;
-
+    const n=document.getElementById("notify");
     navigator.clipboard.writeText(text).then(()=>{
-      msg.textContent="✅ Script copiado com sucesso!";
-      msg.style.background="rgba(0,200,140,.95)";
-      msg.style.display="block";
-      successSound.play();
-      setTimeout(()=>msg.style.display="none",2200);
+      n.style.background="rgba(0,200,140,.95)";
+      n.textContent="✅ Script copiado com sucesso!";
+      n.style.display="block";
+      setTimeout(()=>n.style.display="none",2200);
     }).catch(()=>{
-      msg.textContent="❌ Não foi possível copiar. Copie manualmente.";
-      msg.style.background="rgba(200,0,0,.95)";
-      msg.style.display="block";
-      errorSound.play();
-      setTimeout(()=>msg.style.display="none",3500);
+      n.style.background="rgba(200,0,0,.95)";
+      n.textContent="❌ Não copiou. Copie manualmente.";
+      n.style.display="block";
+      setTimeout(()=>n.style.display="none",3500);
     });
-  });
+  };
 });
 </script>
 
