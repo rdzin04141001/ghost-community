@@ -5,21 +5,89 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ghost Community</title>
 
-<link rel="icon" type="image/png" href="https://i.imgur.com/LEB8X3E.png">
+<!-- NOVA IMAGEM NA GUIA DO SITE (FAVICON) -->
+<link rel="icon" type="image/png" href="https://i.imgur.com/KEJOrpV.png">
 
 <style>
-:root{
-  --blue:#9be8ff;
-  --green:#6dffb2;
-  --bg:#060b0d;
-  --card:rgba(10,35,30,.75);
+/* DEFINIÇÃO DAS CORES DINÂMICAS DO TEMA */
+:root {
+  --blue: #9be8ff;
+  --green: #6dffb2;
+  --bg: #060b0d;
+  --card: rgba(10,35,30,.75);
+  
+  /* Variáveis que mudam de acordo com o tema selecionado */
+  --primary-color: #9be8ff; 
+  --glow-color: rgba(77,163,255,.8);
+  --border-color: rgba(77,163,255,.25);
+  --badge-bg: rgba(0,180,255,.15);
+  --badge-text: #7dd3ff;
+  --code-border: rgba(77,163,255,.25);
+  --bg-gradient: radial-gradient(circle at top, #0e2a2f, #020606 65%);
 }
+
+/* PALETA DE CORES PARA CADA TEMA */
+[data-theme="azul"] {
+  --primary-color: #9be8ff;
+  --glow-color: rgba(77, 163, 255, 0.8);
+  --border-color: rgba(77, 163, 255, 0.25);
+  --badge-bg: rgba(0, 180, 255, 0.15);
+  --badge-text: #7dd3ff;
+  --code-border: rgba(77, 163, 255, 0.25);
+  --bg-gradient: radial-gradient(circle at top, #0e2a2f, #020606 65%);
+}
+
+[data-theme="vermelho"] {
+  --primary-color: #ff6b6b;
+  --glow-color: rgba(255, 107, 107, 0.8);
+  --border-color: rgba(255, 107, 107, 0.25);
+  --badge-bg: rgba(255, 0, 0, 0.15);
+  --badge-text: #ff8e8e;
+  --code-border: rgba(255, 107, 107, 0.25);
+  --bg-gradient: radial-gradient(circle at top, #3a0d0d, #060101 65%);
+}
+
+[data-theme="amarelo"] {
+  --primary-color: #ffd43b;
+  --glow-color: rgba(255, 212, 59, 0.8);
+  --border-color: rgba(255, 212, 59, 0.25);
+  --badge-bg: rgba(255, 212, 59, 0.15);
+  --badge-text: #ffe066;
+  --code-border: rgba(255, 212, 59, 0.25);
+  --bg-gradient: radial-gradient(circle at top, #342a08, #050401 65%);
+}
+
+[data-theme="verde"] {
+  --primary-color: #6dffb2;
+  --glow-color: rgba(109, 255, 178, 0.8);
+  --border-color: rgba(109, 255, 178, 0.25);
+  --badge-bg: rgba(0, 255, 120, 0.15);
+  --badge-text: #a1ffd0;
+  --code-border: rgba(109, 255, 178, 0.25);
+  --bg-gradient: radial-gradient(circle at top, #0b2f1d, #010603 65%);
+}
+
+[data-theme="roxo"] {
+  --primary-color: #b388ff;
+  --glow-color: rgba(179, 136, 255, 0.8);
+  --border-color: rgba(179, 136, 255, 0.25);
+  --badge-bg: rgba(124, 77, 255, 0.15);
+  --badge-text: #d1b3ff;
+  --code-border: rgba(179, 136, 255, 0.25);
+  --bg-gradient: radial-gradient(circle at top, #230f3a, #040206 65%);
+}
+
+html {
+  scroll-behavior: smooth; /* Rolagem suave ao clicar nos links da Nav Bar */
+}
+
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:Inter,Segoe UI,Arial,sans-serif;
-  background:radial-gradient(circle at top,#0e2a2f,#020606 65%);
+  background: var(--bg-gradient);
   color:#fff;
+  transition: background 0.5s ease;
 }
 
 /* GRID */
@@ -36,7 +104,101 @@ body{
   to{background-position:600px 600px,600px 600px}
 }
 
-.container{max-width:1400px;margin:auto;padding:80px 40px}
+/* CONTAINER (Ajustado o padding-top para o conteúdo não ficar por baixo da Nav Bar) */
+.container{max-width:1400px;margin:auto;padding:140px 40px 80px 40px}
+
+/* NAV BAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(6, 11, 13, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 10000;
+  transition: border-color 0.3s;
+}
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.logo span {
+  color: var(--primary-color);
+  transition: color 0.3s;
+}
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.nav-link {
+  color: #c7d2ff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-link:hover {
+  color: var(--primary-color);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s, background-color 0.3s;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* SELETOR DE TEMAS INTEGRADO À NAV BAR */
+.theme-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-options {
+  display: flex;
+  gap: 6px;
+}
+.theme-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.theme-btn:hover {
+  transform: scale(1.15);
+}
+.theme-btn.active {
+  border-color: #fff;
+  box-shadow: 0 0 8px var(--primary-color);
+}
+.btn-vermelho { background: #ff6b6b; }
+.btn-amarelo { background: #ffd43b; }
+.btn-verde { background: #6dffb2; }
+.btn-roxo { background: #b388ff; }
+.btn-azul { background: #9be8ff; }
 
 /* HERO */
 .hero{
@@ -49,29 +211,31 @@ body{
   display:inline-flex;
   padding:6px 14px;
   border-radius:999px;
-  background:rgba(0,180,255,.15);
-  color:#7dd3ff;
+  background: var(--badge-bg);
+  color: var(--badge-text);
   font-size:14px;
+  transition: all 0.3s;
 }
 h1{font-size:64px;margin:20px 0}
-h1 span{color:var(--blue)}
+h1 span{color: var(--primary-color); transition: color 0.3s;}
 .hero p{font-size:18px;color:#c7d2ff;max-width:520px}
 
 /* CODE */
 .code-box{
   background:rgba(10,15,30,.85);
   border-radius:18px;
-  border:1px solid rgba(77,163,255,.25);
+  border:1px solid var(--code-border);
   padding:18px;
+  transition: border-color 0.3s;
 }
 .code-header{display:flex;gap:8px;margin-bottom:12px}
 .dot{width:12px;height:12px;border-radius:50%}
 .red{background:#ff5f56}.yellow{background:#ffbd2e}.green{background:#27c93f}
-pre{margin:0;font-family:Consolas,monospace;color:#9ad1ff}
+pre{margin:0;font-family:Consolas,monospace;color: var(--primary-color); transition: color 0.3s;}
 
 /* SECTIONS */
 .section{margin-top:120px}
-.section h2{font-size:42px;color:var(--blue);margin-bottom:40px}
+.section h2{font-size:42px;color: var(--primary-color);margin-bottom:40px; transition: color 0.3s;}
 
 /* CARDS */
 .cards{
@@ -81,15 +245,16 @@ pre{margin:0;font-family:Consolas,monospace;color:#9ad1ff}
 }
 .card{
   background:var(--card);
-  border:1px solid rgba(77,163,255,.25);
+  border:1px solid var(--border-color);
   border-radius:18px;
   padding:14px;
   cursor:pointer;
   transition:.35s;
+  text-decoration: none;
 }
 .card:hover{
   transform:translateY(-10px) scale(1.04);
-  box-shadow:0 0 45px rgba(77,163,255,.8);
+  box-shadow:0 0 45px var(--glow-color);
 }
 .card img{width:100%;border-radius:12px}
 .card p{margin-top:10px;color:#ddd}
@@ -144,7 +309,7 @@ textarea{
 }
 @keyframes dotFall{to{transform:translateY(110vh)}}
 
-/* DISCORD */
+/* DISCORD BUTTON (Fixo) */
 .discord-btn{
   position:fixed;
   bottom:25px;
@@ -167,11 +332,60 @@ textarea{
   background:url("https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg") center/contain no-repeat;
   filter:invert(1);
 }
+
+/* RESPONSIVIDADE PARA CELULARES */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 20px;
+  }
+  .nav-menu {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .container {
+    padding: 190px 20px 60px 20px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  h1 { font-size: 42px; }
+  .hero p { margin: 0 auto; }
+}
 </style>
 </head>
 
-<body>
+<body data-theme="azul">
 <div class="grid"></div>
+
+<!-- NAV BAR ADICIONADA NO TOPO -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo">Ghost <span>Community</span></a>
+    
+    <div class="nav-menu">
+      <a href="#" class="nav-link">Início</a>
+      <a href="#executores" class="nav-link">Executores</a>
+      <a href="#scripts" class="nav-link">Scripts</a>
+      <a href="https://discord.gg/84CRgQbpYX" target="_blank" class="nav-link">Discord</a>
+    </div>
+
+    <!-- Seletor de Temas integrado na barra -->
+    <div class="theme-selector-container">
+      <div class="theme-options">
+        <button class="theme-btn btn-azul active" onclick="setTheme('azul')" title="Tema Azul"></button>
+        <button class="theme-btn btn-vermelho" onclick="setTheme('vermelho')" title="Tema Vermelho"></button>
+        <button class="theme-btn btn-amarelo" onclick="setTheme('amarelo')" title="Tema Amarelo"></button>
+        <button class="theme-btn btn-verde" onclick="setTheme('verde')" title="Tema Verde"></button>
+        <button class="theme-btn btn-roxo" onclick="setTheme('roxo')" title="Tema Roxo"></button>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <div class="container">
 
@@ -192,22 +406,25 @@ textarea{
   </div>
 </section>
 
-<!-- EXECUTORES -->
-<section class="section">
+<!-- EXECUTORES (ID adicionado para link de âncora funcionar) -->
+<section class="section" id="executores">
 <h2>Executores</h2>
 <div class="cards">
+  <!-- NOVO EXECUTOR: MADIUM -->
+  <a href="https://filerift.com/file/BEN2BKv00w" class="card" target="_blank"><img src="https://i.imgur.com/CXSzfkk.png"><p>Madium</p></a>
+
   <a href="https://deltaexploits.gg/delta-executor-android" class="card"><img src="https://i.imgur.com/ayUxVOR.png"><p>Delta (Android)</p></a>
   <a href="https://deltaexploits.gg/delta-executor-ios" class="card"><img src="https://i.imgur.com/ayUxVOR.png"><p>Delta (iOS)</p></a>
   <a href="https://getsolara.dev/" class="card"><img src="https://i.imgur.com/NxiHjMb.png"><p>Solara</p></a>
   <a href="https://wearedevs.net/d/Fluxus%20Z" class="card"><img src="https://i.imgur.com/oQzRUxk.png"><p>Fluxus Z</p></a>
   <a href="https://wearedevs.net/d/Ronix" class="card"><img src="https://i.imgur.com/nNdzDTU.png"><p>Ronix</p></a>
   <a href="https://wearedevs.net/d/JJSploit" class="card"><img src="https://i.imgur.com/aGR6fqU.png"><p>JJSploit</p></a>
-  <a href="https://wearedevs.net/d/Bunni" class="card" target="_blank"><img src="https://imgur.com/PDh5qtW.png"><p>Bunni Executor</p></a>
+  <a href="https://wearedevs.net/d/Bunni" class="card" target="_blank"><img src="https://i.imgur.com/PDh5qtW.png"><p>Bunni Executor</p></a>
 </div>
 </section>
 
-<!-- SCRIPTS -->
-<section class="section">
+<!-- SCRIPTS (ID adicionado para link de âncora funcionar) -->
+<section class="section" id="scripts">
 <h2>Scripts</h2>
 <div class="cards">
 
@@ -236,7 +453,7 @@ textarea{
 </div>
 
 <div class="card script-card" data-script='loadstring(game:HttpGet("https://haze.wtf/api/script"))()'>
-<img src="https://imgur.com/IUFD9oL.png">
+<img src="https://i.imgur.com/IUFD9oL.png">
 <p>Haze (The Forge)</p>
 <textarea readonly>loadstring(game:HttpGet("https://haze.wtf/api/script"))()</textarea>
 </div>
@@ -250,6 +467,31 @@ textarea{
 <a class="discord-btn" href="https://discord.gg/84CRgQbpYX" target="_blank">Discord</a>
 
 <script>
+// JAVASCRIPT DE SELEÇÃO E MEMÓRIA DE TEMA
+function setTheme(themeName) {
+  // Aplica o atributo de tema no body
+  document.body.setAttribute('data-theme', themeName);
+  
+  // Atualiza qual botão do seletor está ativo
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  const activeButton = document.querySelector(`.btn-${themeName}`);
+  if (activeButton) {
+    activeButton.classList.add('active');
+  }
+  
+  // Guarda a preferência para que não suma ao recarregar a página!
+  localStorage.setItem('ghostTheme', themeName);
+}
+
+// Carrega o tema que o usuário deixou ativo ou inicia no azul
+window.onload = () => {
+  const savedTheme = localStorage.getItem('ghostTheme') || 'azul';
+  setTheme(savedTheme);
+}
+
 // SNOW
 for(let i=0;i<40;i++){
   const s=document.createElement('div');
@@ -272,7 +514,8 @@ for(let i=0;i<60;i++){
 
 // COPY SCRIPT
 document.querySelectorAll('.script-card').forEach(card=>{
-  card.onclick=()=>{
+  card.onclick=(e)=>{
+    if (e.target.tagName === 'TEXTAREA') return;
     const msg=document.getElementById('msg-copy');
     navigator.clipboard.writeText(card.dataset.script).then(()=>{
       msg.textContent='✅ Script copiado com sucesso!';
